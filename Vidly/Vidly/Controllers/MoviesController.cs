@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
@@ -10,7 +14,23 @@ namespace Vidly.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Shrekki!" };
-            return View(movie);
+
+            var customers = new List<Customer>
+            {
+                new Customer { Name = "Customer 1"},
+                new Customer { Name = "Customer 2"}
+            };
+
+            var viewModel = new RandomMovieViewModel
+            {
+                Movie = movie,
+                Customers = customers
+            };
+
+            
+            // passing data (movie) to the view
+            // ViewBag & ViewData hankalampia käyttää (nimiä pitää muokata joka paikkaan)
+            return View(viewModel);
         }
 
         public ActionResult Edit(int id)
