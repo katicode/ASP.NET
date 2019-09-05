@@ -38,7 +38,7 @@ namespace Vidly.Controllers
         {
             // c = Customer instanssi (voisi käyttää myös esim. foreach)
             // SingleOrDefault palauttaa nollan jos asiakkaita ei löydy
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c => c.Id == id);
 
             // jos id:tä ei ole olemassa eli mennään osoitteeseen details/100 niin palautetaan HttpNotFound
             if (customer == null)

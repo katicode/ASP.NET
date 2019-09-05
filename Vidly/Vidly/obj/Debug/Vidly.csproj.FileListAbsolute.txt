@@ -219,3 +219,5 @@ C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipType.res
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipType1.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipTypes1.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipTypes2.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.CustomerBirthdateAdded.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.CustomerBirthdates.resources
