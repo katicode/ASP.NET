@@ -1,0 +1,13 @@
+﻿@model Vidly.Models.Customer
+    <!-- tuodaan Customer luokka tänne, ihan normaalisti-->
+
+
+@{
+    // sivuston otsikoksi luokan name-arvo
+    ViewBag.Title = Model.Name; 
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+

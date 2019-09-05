@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Vidly.Models.Customer>
+    <!--Käytetty listan luomiseen IEnumerable, joten siksi se tuotava tänne -->
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+<!--
+    Jos Model erisuuri kuin Any (eli ei tietoja) niin sanotaan ettei asiakkaita ole    
+-->
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <!--ActionLink
+                        Menee osoitteeseen details/customers/customer.id
+                        -->
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
