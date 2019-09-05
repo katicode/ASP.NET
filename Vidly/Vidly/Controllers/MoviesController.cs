@@ -10,22 +10,41 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        // tietokantayhteys
+        private ApplicationDbContext _context;
+
+        // dbcontext = disposable object, kertakäyttöinen objekti
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Movies
         public ViewResult Index()
         {
-            var movies = GetMovies();
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
 
             return View(movies);
         }
 
-        // tehdään lista elokuvista, joka yllä annetaan View:lle
-        private IEnumerable<Movie> GetMovies()
+        // GET: Movies/Details
+        public ActionResult Details(int id)
         {
-            return new List<Movie>
-            {
-                new Movie { Id = 1, Name = "Shrek" },
-                new Movie { Id = 2, Name = "Wall-e" }
-            };
+            // c = Customer instanssi (voisi käyttää myösesim. foreach)
+            // SingleOrDefault palauttaa nollan jos elokuvia ei löydy
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
+
+            // jos id:tä ei ole olemassa eli mennään osoitteeseen details/100 niin palautetaan HttpNotFound
+            if (movie == null)
+                return HttpNotFound();
+
+            //palautetaan movie
+            return View(movie);
         }
 
         // GET: Movies/Random
