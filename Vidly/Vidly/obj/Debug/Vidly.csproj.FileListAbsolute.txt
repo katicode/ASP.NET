@@ -207,3 +207,8 @@ C:\Git\ASP.NET\Vidly\Vidly\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Git\ASP.NET\Vidly\Vidly\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Git\ASP.NET\Vidly\Vidly\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.csproj.CopyComplete
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.InitialModel.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.csproj.GenerateResource.cache
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddIsSubscribedToCustomer.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddMembershipType.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipTypes.resources
