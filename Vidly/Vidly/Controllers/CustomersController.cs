@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity; // jotta include toimii, rivi 31
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,11 +10,25 @@ namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
+        // tietokantayhteys
+        private ApplicationDbContext _context;
+
+        // dbcontext = disposable object, kertakäyttöinen objekti
+        public CustomersController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
         // GET: Customers
         public ViewResult Index()
         {
-            // luodaan objekti customers ja asetetaan sen sisällöksi GetCustomers
-            var customers = GetCustomers();
+            // luodaan objekti customers ja asetetaan sen sisällöksi tietokannan Customers ToList
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return View(customers);
         }
@@ -23,7 +38,7 @@ namespace Vidly.Controllers
         {
             // c = Customer instanssi (voisi käyttää myös esim. foreach)
             // SingleOrDefault palauttaa nollan jos asiakkaita ei löydy
-            var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             // jos id:tä ei ole olemassa eli mennään osoitteeseen details/100 niin palautetaan HttpNotFound
             if (customer == null)
@@ -33,14 +48,6 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-        // luodaan lista, joka viedään Index-metodille ja palautetaan siellä View:lle
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer { Id = 1, Name = "John Smith" },
-                new Customer { Id = 2, Name = "Mary Williams" }
-            };
-        }
+
     }
 }
