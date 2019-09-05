@@ -213,3 +213,9 @@ C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddIsSubscribedToCustomer.
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddMembershipType.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipTypes.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.ApplyAnnotationsToCustomerName.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.NameAddedToMembershipType.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipName.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipType.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipType1.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipTypes1.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipTypes2.resources
