@@ -15,7 +15,7 @@
     mutta jos käytetään alussa using niin sitten saadaan mukaan lopputägi
     "Create" = target action, submit button vie osoitteeseen Customers/Create
     -->
-@using (Html.BeginForm("Create", "Customers"))
+@using (Html.BeginForm("Save", "Customers"))
 {
     <div class="form-group">
         <!--Label tekee perustekstin ja sisältönä "Name" Customer luokasta
@@ -46,6 +46,9 @@
         @Html.Label("Subscribed to Newsletter?")
         @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter, new { @class = "checkbox" })
     </div>
+
+    //hidden kenttä, lähtee eteenpäin mutta ei näy käyttäjälle
+    @Html.HiddenFor(m => m.Customer.Id)
 
     <button type="submit" class="btn btn-primary">Save</button>
 }

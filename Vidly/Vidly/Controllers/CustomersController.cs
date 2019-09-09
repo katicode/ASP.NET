@@ -65,11 +65,28 @@ namespace Vidly.Controllers
 
         // metodiin voidaan mennä ainoastaan postilla
         // model binding, mvc framework binds this model (customer) to request data
+        // Save tallentaa tai päivittää asiakkaan tiedot, riippuen löytyykö id jo tietokannasta
         [HttpPost]
-        public ActionResult Create(Customer customer)
+        public ActionResult Save(Customer customer)
         {
-            // kun customer lisätty _context:iin niin tiedot ovat muistissa mutta eivät vielä tietokannassa
-            _context.Customers.Add(customer);
+            if (customer.Id == 0)
+                // kun customer lisätty _context:iin niin tiedot ovat muistissa mutta eivät vielä tietokannassa
+                _context.Customers.Add(customer);
+            else
+            {
+                // single-metodi palauttaa exceptionin jos asiakasta ei löydy
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id);
+
+                // tietojen päivitys tietokantaan
+                // TryUpdateModel päivittäisi kaikki tiedot, sitä ei yleensä haluta
+                // AutoMapper voisi toimia myös
+                customerInDb.Name = customer.Name;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+
+            }
+
             // tallennetaan kaikki, jos onnistuu. jos tulee virhe niin mitään ei tallenneta
             _context.SaveChanges();
 
