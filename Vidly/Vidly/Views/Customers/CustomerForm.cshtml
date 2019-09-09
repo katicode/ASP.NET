@@ -1,4 +1,4 @@
-﻿@model Vidly.ViewModels.NewCustomerViewModel
+﻿@model Vidly.ViewModels.CustomerFormViewModel
 
 
 <!--at model Vidly.Models.Customer
@@ -29,22 +29,22 @@
 
     <div class="form-group">
         @Html.Label("Date of Birth")
-        @Html.TextBoxFor(m => m.Customer.Birthdate, new { @class = "form-control" })
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Subscribed to Newsletter?")
-        @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter, new { @class = "checkbox" })
+        @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d MMM yyyy }", new { @class = "form-control" })
     </div>
 
     <div class="form-group">
         @Html.Label("Membership Type")
-        <!--DropDownList attribuutit: 
+        <!--DropDownList attribuutit:
             1. list of items
             2. name of the property in membership type class which holds item
             3. property joka holds text to item
             "Select membershiptype" -> luo rivin listan ylimmäksi -->
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Subscribed to Newsletter?")
+        @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter, new { @class = "checkbox" })
     </div>
 
     <button type="submit" class="btn btn-primary">Save</button>

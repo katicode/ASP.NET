@@ -53,12 +53,12 @@ namespace Vidly.Controllers
             // haetaan membershiptypes tietokannasta
             var membershipTypes = _context.MembershipTypes.ToList();
 
-            var viewModel = new NewCustomerViewModel
+            var viewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes
             };
 
-            return View(viewModel);
+            return View("CustomerForm" ,viewModel);
         }
 
         // F9 pikanäppäin breakpointille
@@ -75,6 +75,25 @@ namespace Vidly.Controllers
 
             // toiminnan jälkeen palautetaan asiakas -> customers/index
             return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            // haetaan tietokannasta Customers taulusta id
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+
+            //jos id:tä ei löydy niin palautetaan virhe 404
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+
+
+            return View("CustomerForm", viewModel);
         }
 
     }

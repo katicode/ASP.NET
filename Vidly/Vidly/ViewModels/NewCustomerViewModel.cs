@@ -6,7 +6,7 @@ using Vidly.Models;
 
 namespace Vidly.ViewModels
 {
-    public class NewCustomerViewModel
+    public class CustomerFormViewModel
     {
         // voi tehdä myös List, mutta IEnumerable tarjoaa enemmän ominaisuuksia
         public IEnumerable<MembershipType> MembershipTypes { get; set; }
