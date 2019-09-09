@@ -58,8 +58,23 @@ namespace Vidly.Controllers
                 MembershipTypes = membershipTypes
             };
 
-
             return View(viewModel);
+        }
+
+        // F9 pikanäppäin breakpointille
+
+        // metodiin voidaan mennä ainoastaan postilla
+        // model binding, mvc framework binds this model (customer) to request data
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            // kun customer lisätty _context:iin niin tiedot ovat muistissa mutta eivät vielä tietokannassa
+            _context.Customers.Add(customer);
+            // tallennetaan kaikki, jos onnistuu. jos tulee virhe niin mitään ei tallenneta
+            _context.SaveChanges();
+
+            // toiminnan jälkeen palautetaan asiakas -> customers/index
+            return RedirectToAction("Index", "Customers");
         }
 
     }
