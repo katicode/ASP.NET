@@ -24,6 +24,10 @@ namespace Vidly.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Movie> Movies { get; set; }
 
+        //lisätään myös membershiptype, jotta saadaan vietyä dropdown list Customers/New -näkymään
+        // CustomersController Action -> New
+        public DbSet<MembershipType> MembershipTypes { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

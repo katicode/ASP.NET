@@ -1,5 +1,8 @@
-﻿@model Vidly.Models.Customer
-<!-- Tuodaan Customer luokka -->
+﻿@model Vidly.ViewModels.NewCustomerViewModel
+
+
+<!--at model Vidly.Models.Customer
+    Tuodaan Customer luokka, vaihdetty kun tehty uusi ViewModel -->
 
 @{
     ViewBag.Title = "New";
@@ -13,22 +16,32 @@
 @using (Html.BeginForm("Create", "Customers"))
 {
     <div class="form-group">
-        <!--Label tekee perustekstin ja sisältönä "Name" Customer luokasta 
+        <!--Label tekee perustekstin ja sisältönä "Name" Customer luokasta
             LabelFor on label tietylle ja label on pelkkä teksti -->
-        @Html.LabelFor(m => m.Name)
+        @Html.LabelFor(m => m.Customer.Name)
         <!--TextBox luo tekstilaatikon ja kun sisältö haetaan Customer luokan attribuutista Name
             niin tulee automaattisesti kyseiselle muuttujalle määritellyt arvot esim. 255 merkkiä pitkä
             Form control on tyyliluokka bootstrapista -->
-        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
     </div>
 
     <div class="form-group">
         @Html.Label("Date of Birth")
-        @Html.TextBoxFor(m => m.Birthdate, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Customer.Birthdate, new { @class = "form-control" })
     </div>
 
     <div class="form-group">
         @Html.Label("Subscribed to Newsletter?")
-        @Html.CheckBoxFor(m => m.IsSubscribedToNewsletter, new { @class = "checkbox" })
+        @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter, new { @class = "checkbox" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Membership Type")
+        <!--DropDownList attribuutit: 
+            1. list of items
+            2. name of the property in membership type class which holds item
+            3. property joka holds text to item
+            "Select membershiptype" -> luo rivin listan ylimmäksi -->
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
     </div>
 }
