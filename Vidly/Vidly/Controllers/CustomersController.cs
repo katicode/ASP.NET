@@ -69,6 +69,20 @@ namespace Vidly.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            // virheenkäsittelijä, jos jokin tallennuksessa menee vikaan, palautetaan käyttäjä sivulle
+            // muista myös luokkiin validoinnit
+            if (!ModelState.IsValid)
+            {
+                // asetetaan viewModel ja sisällöksi Save-Actionille lähetetty customer-objekti
+                var viewModel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+
+                return View("CustomerForm", viewModel);
+            }
+
             if (customer.Id == 0)
                 // kun customer lisätty _context:iin niin tiedot ovat muistissa mutta eivät vielä tietokannassa
                 _context.Customers.Add(customer);

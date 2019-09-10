@@ -10,8 +10,9 @@ namespace Vidly.Models
     {
         public int Id { get; set; }
 
-        //asetetaan vaatimuksia, ylikirjoittaa defaultit, DataAnnotations
-        [Required]
+        // asetetaan vaatimuksia, ylikirjoittaa defaultit, DataAnnotations
+        // error messagen määrittely, valinnainen
+        [Required(ErrorMessage = "Please enter customer's name.")]
         [StringLength(255)]
         public string Name { get; set; }
 
@@ -22,6 +23,7 @@ namespace Vidly.Models
 
         public byte MembershipTypeId { get; set; }
 
+        [Min18YearsIfAMember] //oma validointi
         public DateTime? Birthdate { get; set; }
     }
 }

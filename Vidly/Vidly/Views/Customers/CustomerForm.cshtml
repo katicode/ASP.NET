@@ -25,21 +25,25 @@
             niin tulee automaattisesti kyseiselle muuttujalle määritellyt arvot esim. 255 merkkiä pitkä
             Form control on tyyliluokka bootstrapista -->
         @Html.TextBoxFor(m => m.Customer.Name, new { @class = "form-control" })
+        <!-- Validation message -->
+        @Html.ValidationMessageFor(m =>m.Customer.Name)
     </div>
 
     <div class="form-group">
         @Html.Label("Date of Birth")
         @Html.TextBoxFor(m => m.Customer.Birthdate, "{0:d/M/yyyy }", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.Birthdate)
     </div>
 
     <div class="form-group">
         @Html.Label("Membership Type")
         <!--DropDownList attribuutit:
-            1. list of items
-            2. name of the property in membership type class which holds item
-            3. property joka holds text to item
-            "Select membershiptype" -> luo rivin listan ylimmäksi -->
+        1. list of items
+        2. name of the property in membership type class which holds item
+        3. property joka holds text to item
+        "Select membershiptype" -> luo rivin listan ylimmäksi -->
         @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipTypes, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
 
     <div class="form-group">

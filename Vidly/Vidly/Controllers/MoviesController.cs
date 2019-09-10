@@ -147,7 +147,7 @@ namespace Vidly.Controllers
                 movieInDb.ReleaseDate = movie.ReleaseDate;
             }
 
-            // virheen metsästys
+            // virheen metsästys, try-catchin voi poistaa myöhemmin
             // muista lisätä ylös using System.Data.Entity.Validation
             try
             {
