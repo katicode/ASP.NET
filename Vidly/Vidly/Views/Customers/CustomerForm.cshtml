@@ -60,3 +60,14 @@
 
     <button type="submit" class="btn btn-primary">Save</button>
 }
+
+<!--enable = aktivoi, client side errors
+    eli lomake ei lähde Save-Actionille jos siinä on virheitä 
+    --
+    Huom. Razor View Engine tarkistaa data annotations ja lisää ne html-koodin sekaan
+    Alla oleva jqueryvalidation toimii, koska se osaa etsiä html-koodista validaatiot
+    -->
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
