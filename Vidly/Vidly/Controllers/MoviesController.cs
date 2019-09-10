@@ -72,7 +72,19 @@ namespace Vidly.Controllers
 
         public ActionResult Edit(int id)
         {
-            return Content("id=" + id);
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+
+            // jos elokuvaa ei löydy tietokannasta niin palautetaan 404
+            if (movie == null)
+                return HttpNotFound();
+
+            var viewModel = new NewMovieFormViewModel
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+
+            return View("New", viewModel);
         }
 
         // Tätä actionia kutsutaan kun navigoidaan /movies -osoitteeseen
@@ -104,5 +116,41 @@ namespace Vidly.Controllers
             return Content(year + "/" + month);
         }
 
+        public ViewResult New()
+        {
+            // haetaan genret tietokannasta
+            var genres = _context.Genres.ToList();
+
+            var viewModel = new NewMovieFormViewModel
+            {
+                Genres = genres
+            };
+            
+            return View("New", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                movie.DateAdded = DateTime.Now;
+                _context.Movies.Add(movie);
+            }
+            else
+            {
+                var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+                movieInDb.Name = movie.Name;
+                movieInDb.Genre = movie.Genre;
+                movieInDb.NumberInStock = movie.NumberInStock;
+                movieInDb.ReleaseDate = movie.ReleaseDate;
+            }
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
     }
+
+    
 }

@@ -1,0 +1,43 @@
+﻿@model Vidly.ViewModels.NewMovieFormViewModel
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Title tulee Viewmodels/NewMovieViewModel -->
+<h2>@Model.Title</h2>
+
+<!-- Formi lähettää tiedot MoviesControllerin Save Actionille
+    kun submit-painiketta klikataan -->
+@using (Html.BeginForm("Save", "Movies"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Movie.Name)
+        @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Release Date")
+        @Html.TextBoxFor(m => m.Movie.ReleaseDate, "{0:d/M/yyyy }", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Genre")
+        <!--DropDownList attribuutit:
+            1. list of items
+            2. name of the property in membership type class which holds item
+            3. property joka holds text to item
+            "Select membershiptype" -> luo rivin listan ylimmäksi -->
+        @Html.DropDownListFor(m => m.Movie.Genre.Id, new SelectList(Model.Genres, "Id", "Name"), "", new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Number in Stock")
+        @Html.TextBoxFor(m => m.Movie.NumberInStock, new { @class = "form-control" })
+    </div>
+
+    //hidden kenttä, lähtee eteenpäin mutta ei näy käyttäjälle
+    @Html.HiddenFor(m => m.Movie.Id)
+
+    <button type="submit" class="btn btn-primary">Save</button>
+}

@@ -28,6 +28,9 @@ namespace Vidly.Models
         // CustomersController Action -> New
         public DbSet<MembershipType> MembershipTypes { get; set; }
 
+        //Genre luokka pitää lisätä tänne jotta sitä voidaan käyttää
+        public DbSet<Genre> Genres { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

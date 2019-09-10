@@ -102,7 +102,6 @@ C:\VS Projektit\Vidly\Vidly\obj\Debug\Vidly.csproj.CoreCompileInputs.cache
 C:\VS Projektit\Vidly\Vidly\obj\Debug\Vidly.csproj.CopyComplete
 C:\VS Projektit\Vidly\Vidly\obj\Debug\Vidly.dll
 C:\VS Projektit\Vidly\Vidly\obj\Debug\Vidly.pdb
-C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.csprojAssemblyReference.cache
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.csproj.CoreCompileInputs.cache
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.dll
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.pdb
@@ -222,3 +221,4 @@ C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.PopulateMembershipTypes2.r
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.CustomerBirthdateAdded.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.CustomerBirthdates.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.MoviesAndGenreUpdate.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.movieIdTesti.resources
