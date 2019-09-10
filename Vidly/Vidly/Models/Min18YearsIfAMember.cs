@@ -16,7 +16,8 @@ namespace Vidly.Models
             // objekti pitää sitoa customeriin eli var customer = (Customer)
             var customer = (Customer)validationContext.ObjectInstance;
 
-            if (customer.MembershipTypeId == 0 || customer.MembershipTypeId == 1) // 0 = ei mikään, 1 = pay as you go
+            if (customer.MembershipTypeId == MembershipType.Unknown || 
+                customer.MembershipTypeId == MembershipType.PayAsYouGo) // 0 = unknown, 1 = pay as you go
             {
                 return ValidationResult.Success;
             }

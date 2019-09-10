@@ -223,4 +223,3 @@ C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.CustomerBirthdates.resourc
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.MoviesAndGenreUpdate.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.movieIdTesti.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.genreIdAdded.resources
-C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.csprojAssemblyReference.cache

@@ -55,6 +55,8 @@ namespace Vidly.Controllers
 
             var viewModel = new CustomerFormViewModel
             {
+                // customer pitää sisällyttää myös, koska Id viedään CustomerFormissa hidden-kenttänä Save Actionille
+                Customer = new Customer(),
                 MembershipTypes = membershipTypes
             };
 
