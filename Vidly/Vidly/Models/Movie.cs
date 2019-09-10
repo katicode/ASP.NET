@@ -26,7 +26,9 @@ namespace Vidly.Models
         public byte NumberAvailable { get; set; }
 
         // viittaus Genre-luokkaan
-        [Required]
         public Genre Genre { get; set; }
+
+        [Required]
+        public byte GenreId { get; set; }
     }
 }

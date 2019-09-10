@@ -222,3 +222,4 @@ C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.CustomerBirthdateAdded.res
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.CustomerBirthdates.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.MoviesAndGenreUpdate.resources
 C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.movieIdTesti.resources
+C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.Migrations.genreIdAdded.resources

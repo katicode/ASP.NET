@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Mvc;
 using Vidly.Models;
@@ -146,7 +147,16 @@ namespace Vidly.Controllers
                 movieInDb.ReleaseDate = movie.ReleaseDate;
             }
 
-            _context.SaveChanges();
+            // virheen metsästys
+            // muista lisätä ylös using System.Data.Entity.Validation
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                Console.WriteLine(e); // tähän F9 breakpoint
+            }
 
             return RedirectToAction("Index", "Movies");
         }
