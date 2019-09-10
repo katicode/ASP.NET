@@ -69,6 +69,8 @@ namespace Vidly.Controllers
         // model binding, mvc framework binds this model (customer) to request data
         // Save tallentaa tai päivittää asiakkaan tiedot, riippuen löytyykö id jo tietokannasta
         [HttpPost]
+        [ValidateAntiForgeryToken]// MVC hoitaa kaiken validoinnin -> token'
+        // eli tänne token (yllä) sekä helper metodi viewseihin
         public ActionResult Save(Customer customer)
         {
             // virheenkäsittelijä, jos jokin tallennuksessa menee vikaan, palautetaan käyttäjä sivulle

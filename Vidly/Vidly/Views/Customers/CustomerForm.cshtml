@@ -58,6 +58,12 @@
     //hidden kenttä, lähtee eteenpäin mutta ei näy käyttäjälle
     @Html.HiddenFor(m => m.Customer.Id)
 
+    // metodi tekee tokenin, joka on kuin salainen koodi ja asettaa sen as a hidden field in this form and also has a cookie in a users computer
+    // kun käyttäjä painaa submit-nappulaa niin verrataan tokenia ja käyttäjälle tallennettua cookieta. jos ovat sama niin ok. jos eri niin kyseessä on hyökkäys muualta.
+    // tämä hidden field tulee näkyviin ainoastaan kun asiakas vierailee customerformilla eli ei jos sinne mennään suoralla osoitteella. 
+    // vaikka hyökkääjä saisi tietoonsa cookien niin silti hän ei saa käsiinsä hidden fieldiä eli sitä AntiForgeryTokenin tekemää.
+    @Html.AntiForgeryToken()
+
     <button type="submit" class="btn btn-primary">Save</button>
 }
 
