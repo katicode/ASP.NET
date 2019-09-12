@@ -51,26 +51,26 @@ namespace Vidly.Controllers.Api
         }
 
         // GET /api/customers/1
-        public CustomerDto GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             // haetaan yhden asiakkaan tiedot
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
             // jos asiakasta ei löydy niin not found
             if (customer == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
 
             // muutoin palautetaan customer as an argument to this method
-            return Mapper.Map<Customer, CustomerDto>(customer);
+            return Ok(Mapper.Map<Customer, CustomerDto>(customer));
         }
 
         // POST /api/customers
         [HttpPost] // toiminto suoritetaan vain jos tulee post request
-        public CustomerDto CreateCustomer(CustomerDto customer)
+        public IHttpActionResult CreateCustomer(CustomerDto customer)
         {
             // jos kaikki ei ole ok niin badrequest
             if (!ModelState.IsValid)
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
 
             // dto pitää palauttaa domain objektiksi
             var newCustomer = Mapper.Map<CustomerDto, Customer>(customer);
@@ -85,7 +85,9 @@ namespace Vidly.Controllers.Api
             customer.Id = newCustomer.Id;
 
             // lopuksi palautetaan customer-objekti
-            return customer;
+            // Request.RequestUri -> saadaan tarvittava uri = unified resource identifier, uri = using system (namespace);
+            // esim. api/customers/10
+            return Created(new Uri(Request.RequestUri + "/" + newCustomer.Id), customer);
         }
 
         // tietojen päivitys, PUT
