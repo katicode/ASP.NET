@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Newtonsoft.Json; // Formatting
+using Newtonsoft.Json.Serialization; // Camelcaseproperty...
 
 namespace Vidly
 {
@@ -9,6 +11,13 @@ namespace Vidly
     {
         public static void Register(HttpConfiguration config)
         {
+            // Camel notation -> APIn JSON notaatioiden muotoilu, ensimmäinen kirjain aina pienellä esim. Id -> id
+            // Javascript käyttää Camel notation
+            // Oletuksena Pascal notation esim. Id
+            var settings = config.Formatters.JsonFormatter.SerializerSettings;
+            settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            settings.Formatting = Formatting.Indented;
+
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
