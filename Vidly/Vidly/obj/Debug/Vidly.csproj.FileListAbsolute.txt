@@ -229,6 +229,5 @@ C:\Git\ASP.NET\Vidly\Vidly\bin\System.Web.Http.WebHost.dll
 C:\Git\ASP.NET\Vidly\Vidly\bin\System.Net.Http.Formatting.xml
 C:\Git\ASP.NET\Vidly\Vidly\bin\System.Web.Http.xml
 C:\Git\ASP.NET\Vidly\Vidly\bin\System.Web.Http.WebHost.xml
-C:\Git\ASP.NET\Vidly\Vidly\obj\Debug\Vidly.csprojAssemblyReference.cache
 C:\Git\ASP.NET\Vidly\Vidly\bin\AutoMapper.dll
 C:\Git\ASP.NET\Vidly\Vidly\bin\AutoMapper.xml
