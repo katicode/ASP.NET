@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Vidly.Dtos;
 using Vidly.Models; // IEnumerable lista tarvitsee
 
 namespace Vidly.Controllers.Api
@@ -43,13 +45,13 @@ namespace Vidly.Controllers.Api
         }
 
         // GET /api/customers
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<CustomerDto> GetCustomers()
         {
-            return _context.Customers.ToList();
+            return _context.Customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
         }
 
         // GET /api/customers/1
-        public Customer GetCustomer(int id)
+        public CustomerDto GetCustomer(int id)
         {
             // haetaan yhden asiakkaan tiedot
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
@@ -58,22 +60,29 @@ namespace Vidly.Controllers.Api
             if (customer == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            // muutoin palautetaan customer
-            return customer;
+            // muutoin palautetaan customer as an argument to this method
+            return Mapper.Map<Customer, CustomerDto>(customer);
         }
 
         // POST /api/customers
         [HttpPost] // toiminto suoritetaan vain jos tulee post request
-        public Customer CreateCustomer(Customer customer)
+        public CustomerDto CreateCustomer(CustomerDto customer)
         {
             // jos kaikki ei ole ok niin badrequest
             if (!ModelState.IsValid)
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
 
+            // dto pitää palauttaa domain objektiksi
+            var newCustomer = Mapper.Map<CustomerDto, Customer>(customer);
+
             // jos ok niin lisätään asiakas
-            _context.Customers.Add(customer);
+            _context.Customers.Add(newCustomer);
             // ja tallennetaan muutokset. huom. ilman saveChanges asiakas ei tallennu tietokantaan!
             _context.SaveChanges();
+
+            // asiakkaalla on nyt tietokannan luoma id
+            // lisätään id dto:hon ja palautetaan to the client
+            customer.Id = newCustomer.Id;
 
             // lopuksi palautetaan customer-objekti
             return customer;
@@ -82,7 +91,7 @@ namespace Vidly.Controllers.Api
         // tietojen päivitys, PUT
         // PUT /api/customers/1
         [HttpPut]
-        public void UpdateCustomer(int id, Customer customer) // tämä ei palauta mitään
+        public void UpdateCustomer(int id, CustomerDto customer) // tämä ei palauta mitään
         {
             // jos kaikki ei ole ok niin badrequest
             if (!ModelState.IsValid)
@@ -95,11 +104,10 @@ namespace Vidly.Controllers.Api
             if (customerInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
-            // jos ok niin päivitetään tiedot
-            customerInDb.Name = customer.Name;
-            customerInDb.Birthdate = customer.Birthdate;
-            customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
-            customerInDb.MembershipTypeId = customer.MembershipTypeId;
+            // jos objekti on jo olemassa (customerInDb) niin se voidaan antaa toisena parametrina
+            // jos ei niin voitaisiin käyttää var x = Mapper.Map.....(customer)
+            // customerInDb on ladattu tietokannasta, mapper.map vertaa tietoja from source(customer) to target (customerInDb)
+            Mapper.Map(customer, customerInDb);
 
             // ja vielä tallennus
             _context.SaveChanges();
