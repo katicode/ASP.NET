@@ -17,11 +17,12 @@
 }
 else
 {
-    <table class="table table-bordered table-hover">
+    <table id="customers" class="table table-bordered table-hover">
         <thead>
             <tr>
                 <th>Customer</th>
                 <th>Discount Rate</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -33,8 +34,26 @@ else
                         -->
                     <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
                     <td>@customer.MembershipType.Name</td>
+                    <td>
+                        <!--Kaksi luokkaa, btn-link muotoiluun(bootstrap) ja js-delete javascriptiä varten-->
+                        <button class="btn-link js-delete">Delete</button>
+                    </td>
                 </tr>
             }
         </tbody>
     </table>
+}
+
+<!--Jquery, etsitään id customers (taulukko) ja sieltä kaikki luokan js-delete objektit
+    on-metodi hoitaa click-eventit ja function = callback function
+    -->
+@section scripts 
+{
+    <script>
+        $(document).ready(function () {
+            $("#customers .js-delete").on("click", function () {
+                confirm("Are you sure you want to delete this customer?");
+            });
+        });    
+    </script>>
 }
