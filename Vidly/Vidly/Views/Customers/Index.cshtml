@@ -52,7 +52,9 @@ else
 {
     <script>
         $(document).ready(function () {
-            $("#customers .js-delete").on("click", function () {
+            // Js-delete siirretty on-metodin toiseksi arvoksi, näin etsitään koko taulukosta ja sitten click eventit suodatetaan
+            // jos js-delete olisi aiemmassa kohdassa niin silloin jokaisella taulun rivillä olisi oma click-event ja se veisi paljon enemmän muistia
+            $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
 
                 // Bootbox.confirm ei palauta booleania, it takes a callback function
