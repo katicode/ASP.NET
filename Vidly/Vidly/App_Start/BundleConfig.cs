@@ -12,8 +12,18 @@ namespace Vidly
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            // yhdistetään jquery ja bootstrap niput/bundles -> scriptbundle nimeltä lib
+            bundles.Add(new ScriptBundle("~/bundles/lib").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js",
+                        // Lisätty bootbox scriptit
+                        // Ensin asennettu komennolla "install-package bootbox -version:4.3.0"
+                        "~/Scripts/bootbox.js",
+                        // lisätään datatables mitä käytetään
+                        // ensin asennettu komennolla "install-package jquery.datatables -version:1.10.11"
+                        "~/scripts/datatables/jquery.datatables.js",
+                        "~/scripts/datatables/datatables.bootstrap.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -23,15 +33,11 @@ namespace Vidly
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            // Lisätty bootbox scriptit
-            // Ensin asennettu komennolla "install-package bootbox -version:4.3.0"
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/bootbox.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/content/datatables/css/datatables.bootstrap.css")); // datatables css
+
         }
     }
 }
