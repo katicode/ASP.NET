@@ -8,15 +8,6 @@
 
 <h2>Customers</h2>
 
-<!--
-    Jos Model erisuuri kuin Any (eli ei tietoja) niin sanotaan ettei asiakkaita ole    
--->
-@if (!Model.Any())
-{
-    <p>We don't have any customers yet.</p>
-}
-else
-{
     <table id="customers" class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -26,24 +17,10 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var customer in Model)
-            {
-                <tr>
-                    <!--ActionLink
-                        Menee osoitteeseen details/customers/customer.id
-                        -->
-                    <td>@Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)</td>
-                    <td>@customer.MembershipType.Name</td>
-                    <td>
-                        <!--Kaksi luokkaa, btn-link muotoiluun(bootstrap) ja js-delete javascriptiä varten
-                            data-customer-id tallentaa kyseisen id:n muuttujaan -->
-                        <button data-customer-id="@customer.Id" class="btn-link js-delete">Delete</button>
-                    </td>
-                </tr>
-            }
+            <!-- Placeholder for datatable-->
         </tbody>
     </table>
-}
+
 
 <!--Jquery, etsitään id customers (taulukko) ja sieltä kaikki luokan js-delete objektit
     on-metodi hoitaa click-eventit ja function = callback function eli se mitä tehdään
@@ -52,7 +29,33 @@ else
 {
     <script>
         $(document).ready(function () {
-            $("#customers").DataTable();
+            // Käytetään DataTablea customers taulukossa -> sivunumerointi, haku, sorttaus ym.
+            $("#customers").DataTable({
+                // käytetään apia taulukon luomiseen
+                ajax: {
+                    url: "/api/customers",
+                    // data saadaan customers-taulukosta, vastaus joka saadaan api:lta on array of objects, so the array is the actual source of data
+                    dataSrc: ""
+                },
+                // columns array
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, customer) {
+                            return "<a href='/customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
 
             // Js-delete siirretty on-metodin toiseksi arvoksi, näin etsitään koko taulukosta ja sitten click eventit suodatetaan
             // jos js-delete olisi aiemmassa kohdassa niin silloin jokaisella taulun rivillä olisi oma click-event ja se veisi paljon enemmän muistia

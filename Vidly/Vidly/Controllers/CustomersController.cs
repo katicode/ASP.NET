@@ -28,10 +28,8 @@ namespace Vidly.Controllers
         // GET: Customers
         public ViewResult Index()
         {
-            // luodaan objekti customers ja asetetaan sen sisällöksi tietokannan Customers ToList
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-
-            return View(customers);
+            // täällä ei tarvitse luoda listaa asiakkaista, se hoidetaan apin avulla. ajax noutaa tiedot. (views/customers/index.cshtml)
+            return View();
         }
 
         // GET: Customers/Details
