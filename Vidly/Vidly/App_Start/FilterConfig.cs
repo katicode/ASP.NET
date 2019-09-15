@@ -7,7 +7,11 @@ namespace Vidly
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
+            // vie käyttäjän virhesivulle kun jokin toiminto tuottaa poikkeuksen
             filters.Add(new HandleErrorAttribute());
+
+            // koko ohjelman kattava filtteri, mihinkään ei pääse jos ei ole kirjautunut sisään
+            filters.Add(new AuthorizeAttribute());
         }
     }
 }

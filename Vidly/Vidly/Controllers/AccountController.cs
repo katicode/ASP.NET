@@ -150,11 +150,13 @@ namespace Vidly.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {
+            {   // jos model = valid niin luodaan uusi käyttäjä ja määritetään sille käyttäjänimi + email
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    // SignInManager -> vastuussa sisään- ja uloskirjautumisesta
+                    // rekisteröinnin jälkeen pysyy sisäänkirjautuneena -> jos haluaa muuttaa niin pois alla oleva rivi ja näkyviin 164-167
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
