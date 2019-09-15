@@ -30,7 +30,7 @@
     <script>
         $(document).ready(function () {
             // Käytetään DataTablea customers taulukossa -> sivunumerointi, haku, sorttaus ym.
-            $("#customers").DataTable({
+            var table = $("#customers").DataTable({
                 // käytetään apia taulukon luomiseen
                 ajax: {
                     url: "/api/customers",
@@ -69,8 +69,11 @@
                         $.ajax({
                         url: "/api/customers/" + button.attr("data-customer-id"),
                         method: "DELETE",
-                        success: function () {
-                            button.parents("tr").remove();
+                            success: function () {
+                            // tämä poistaa vain taulukon tr-elemetin -> button.parents("tr").remove();
+                            // mutta näin poistetaan rivi tietokannasta (sekä samalla taulukosta)
+                            // katso koko datatables dokumentaatio -> http://datatables.net
+                                table.row(button.parents("tr")).remove().draw();
                             //console.log("Success");
                         }
                     });
