@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Vidly.Models.Customer>
+    <!--Käytetty listan luomiseen IEnumerable, joten siksi se tuotava tänne -->
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+    <table id="customers" class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+                <th>Membership Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Placeholder for datatable-->
+        </tbody>
+    </table>
+
+
+<!--Jquery, etsitään id customers (taulukko) ja sieltä kaikki luokan js-delete objektit
+    on-metodi hoitaa click-eventit ja function = callback function eli se mitä tehdään
+    -->
+@section scripts 
+{
+    <script>
+        $(document).ready(function () {
+            // Käytetään DataTablea customers taulukossa -> sivunumerointi, haku, sorttaus ym.
+            var table = $("#customers").DataTable({
+                // käytetään apia taulukon luomiseen
+                ajax: {
+                    url: "/api/customers",
+                    // data saadaan customers-taulukosta, vastaus joka saadaan api:lta on array of objects, so the array is the actual source of data
+                    dataSrc: ""
+                },
+                // columns array
+                columns: [
+                    {
+                        data: "name"
+                    },
+                    {
+                        data: "membershipType.name"
+                    }
+                ]
+            });
+        });    
+    </script>>
+}

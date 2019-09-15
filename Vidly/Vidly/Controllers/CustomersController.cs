@@ -29,7 +29,11 @@ namespace Vidly.Controllers
         public ViewResult Index()
         {
             // täällä ei tarvitse luoda listaa asiakkaista, se hoidetaan apin avulla. ajax noutaa tiedot. (views/customers/index.cshtml)
-            return View();
+
+            if (User.IsInRole(RoleName.CanManageMovies))
+                return View("List");
+            else
+                return View("ReadOnlyList");
         }
 
         // GET: Customers/Details
@@ -46,6 +50,9 @@ namespace Vidly.Controllers
             //palautetaan Customer
             return View(customer);
         }
+        // overrides the global authorize filter
+        // roolit voi erottaa pilkulla
+        [Authorize(Roles = RoleName.CanManageMovies)]
         public ActionResult New()
         {
             // haetaan membershiptypes tietokannasta

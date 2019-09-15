@@ -156,12 +156,6 @@ namespace Vidly.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // adding admin user, rekisteröi admin ja sen jälkeen poista nämä neljä riviä
-                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                    var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("CanManageMovies"));
-                    await UserManager.AddToRoleAsync(user.Id, "CanManageMovies");
-
                     // SignInManager -> vastuussa sisään- ja uloskirjautumisesta
                     // rekisteröinnin jälkeen pysyy sisäänkirjautuneena -> jos haluaa muuttaa niin pois alla oleva rivi ja näkyviin 164-167
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
