@@ -1,0 +1,14 @@
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\bin\Debug\netcoreapp2.1\AspNetCoreApi.deps.json
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\bin\Debug\netcoreapp2.1\AspNetCoreApi.runtimeconfig.json
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\bin\Debug\netcoreapp2.1\AspNetCoreApi.runtimeconfig.dev.json
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\bin\Debug\netcoreapp2.1\AspNetCoreApi.dll
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\bin\Debug\netcoreapp2.1\AspNetCoreApi.pdb
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.csprojAssemblyReference.cache
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.csproj.CoreCompileInputs.cache
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.RazorAssemblyInfo.cache
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.RazorAssemblyInfo.cs
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.AssemblyInfoInputs.cache
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.AssemblyInfo.cs
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.RazorTargetAssemblyInfo.cache
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.dll
+C:\Git\ASP.NET\AspNetCoreApi\AspNetCoreApi\obj\Debug\netcoreapp2.1\AspNetCoreApi.pdb
